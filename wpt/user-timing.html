@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<script>
+
+for (let i = 1; i <= 9; i++) {
+  performance.mark(`custom timing ${i} start`)
+
+  setTimeout(() => {
+    performance.mark(`custom timing ${i} end`)
+  }, i * 100)
+
+  setTimeout(() => {
+    performance.measure(`custom timing ${i}`, `custom timing ${i} start`, `custom timing ${i} end`)
+  }, 1500)
+}
+
+</script>
+</body>
+</html>
