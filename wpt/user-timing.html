@@ -3,7 +3,7 @@
 <head>
   <title>UserTiming test</title>
 </head>
-<body>
+<body bgcolor="linen">
 <img id="deferred_image">
 <script>
 performance.mark('almostStart')
@@ -13,11 +13,8 @@ for (let i = 1; i <= 9; i++) {
 
   setTimeout(() => {
     performance.mark(`custom timing ${i} end`)
-  }, i * 100)
-
-  setTimeout(() => {
     performance.measure(`custom timing ${i}`, `custom timing ${i} start`, `custom timing ${i} end`)
-  }, 1500)
+  }, i * 100)
 }
 
 setTimeout(function(){
@@ -29,7 +26,7 @@ setTimeout(function(){
   performance.mark("mark after 2 seconds")
   performance.measure('measure after 2 seconds')
 
-  // The below does not throw error, but is not registered in Chrome UserTiming timeline
+  // This is visible at the very left of the timeline; zoom in, or best: enable slow 3G emulation to see it
   performance.measure('from-request-to-response', 'requestStart',  'responseEnd')
 
   // The below throws with
@@ -41,7 +38,7 @@ setTimeout(function(){
 setTimeout(function() {
   console.log("FP, FCP timings:")
   console.log(performance.getEntriesByType('paint'))
-}, 3000)
+}, 5000)
 </script>
 </body>
 </html>
