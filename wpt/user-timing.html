@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-<title>User Timing test</title>
-<head></head>
+<head>
+  <title>UserTiming test</title>
+</head>
 <body>
+<img id="deferred_image">
 <script>
+performance.mark('almostStart')
 
 for (let i = 1; i <= 9; i++) {
   performance.mark(`custom timing ${i} start`)
@@ -17,6 +20,30 @@ for (let i = 1; i <= 9; i++) {
   }, 1500)
 }
 
+setTimeout(function(){
+  // testing FP and FCP
+  document.getElementById('deferred_image').src = "https://placeimg.com/640/480/nature"
+}, 1500)
+
+setTimeout(function(){
+  performance.mark("mark after 2 seconds")
+  performance.measure('measure after 2 seconds')
+
+  // The below does not throw error, but is not registered in Chrome UserTiming timeline
+  performance.measure('from-request-to-response', 'requestStart',  'responseEnd')
+
+  // The below throws with
+  // > Uncaught DOMException: Failed to execute 'measure' on 'Performance': The mark 'first-paint' does not exist.
+  // This is because first-paint is not part of PerformanceTiming interface
+  // performance.measure('from start to response', 'almostStart',  'first-paint')
+}, 2000)
+
+setTimeout(function() {
+  console.log("FP, FCP timings:")
+  console.log(performance.getEntriesByType('paint'))
+}, 3000)
 </script>
 </body>
 </html>
+
+
