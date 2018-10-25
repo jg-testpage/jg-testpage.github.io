@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<title>Canary 72: link preload importance=low gets prioritized over blocking script importance=high</title>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js" importance="high"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js" importance="high"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r84/three.min.js"  importance="high"></script>
+<link rel="preload" href="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" as="script" importance="low">
+</body>
+</html>
