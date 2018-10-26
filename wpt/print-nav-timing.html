@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<body>
+<script>
+document.body.innerHTML = Object.entries(performance.getEntriesByType('navigation')[0].toJSON()).filter(i => typeof i[1] == 'number' && !i[0].endsWith('Size')).sort((a,b) => a[1]-b[1]).join("<br>")
+</script>
+</body>
