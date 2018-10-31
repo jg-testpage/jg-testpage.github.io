@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <title>preload and script with same URLs</title>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js" importance="high"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js" importance="high"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"  importance="high"></script>
-
+  
 <link href="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js" rel="preload" as="script" importance="high">
 <link href="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js" rel="preload" as="script" importance="high">
 <link href="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"  rel="preload" as="script" importance="high">
 
 <link href="https://ajax.googleapis.com/ajax/libs/threejs/r84/three.min.js" rel="preload" as="script" importance="low">
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js" importance="high"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js" importance="high"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"  importance="high"></script>
+
 </body>
 </html>
