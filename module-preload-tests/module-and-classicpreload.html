@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>modulepreload test</title>
+
+  <link rel="modulepreload" href="js/main.mjs">
+  <link rel="modulepreload" href="js/import1.mjs">
+  <link rel="modulepreload" href="js/import2.mjs">
+
+  <link rel="preload" as="script" href="js/main.mjs" crossorigin>
+  <link rel="preload" as="script" href="js/import1.mjs" crossorigin>
+  <link rel="preload" as="script" href="js/import2.mjs" crossorigin>
+
+  <script type="module" src="js/main.mjs"></script>
+</head>
+<body>
+</body>
+</html>
