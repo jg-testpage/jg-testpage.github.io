@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<body>
+  <a id="openInEdge" style="display: none">Looks like you run IE11 on Windows 10. Click here to open this page in Edge browser.</a>
+  <script defer>
+    if (document.documentMode === 11 && navigator.userAgent.indexOf('Windows NT 10.0') > -1) {
+      // running IE11 on Windows 10
+      var openInEdge = document.querySelector('#openInEdge');
+      openInEdge.href = 'microsoft-edge:' + document.URL;
+      openInEdge.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
