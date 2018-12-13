@@ -1,14 +1,24 @@
 <!doctype html>
 <html>
 <body>
-  <a id="openInEdge" style="display: none">Looks like you run IE11 on Windows 10. Click here to open this page in Edge browser.</a>
+  <div id="openInEdgeWrapper" style="display: none; background-color: #fc0;">
+    We've noticed you're running IE11 browser on Windows 10.
+    Did you know you can open this page in Edge browser for a faster and more secure experience?
+    <a id="openInEdge" style="background-color: #0cf">Click here to open in Edge.</a>
+  </div>
   <script defer>
     if (document.documentMode === 11 && navigator.userAgent.indexOf('Windows NT 10.0') > -1) {
       // running IE11 on Windows 10
       var openInEdge = document.querySelector('#openInEdge');
       openInEdge.href = 'microsoft-edge:' + document.URL;
-      openInEdge.style.display = 'block';
+      var openInEdgeWrapper = document.querySelector('#openInEdgeWrapper');
+      openInEdgeWrapper.style.display = 'block';
     }
   </script>
+
+  <p>This demo page detects IE11 on Windows 10 and shows a banner to open its URL in Edge instead
+  (using microsoft-edge: protocol).<br>
+  It is able to maintain the full URL, including query string parameters.<br>
+  Note though that the demo doesn't work with file: protocol (only with http(s))</p>
 </body>
 </html>
