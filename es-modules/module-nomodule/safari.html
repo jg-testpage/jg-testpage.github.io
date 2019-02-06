@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://jg-testpage.github.io/es-modules/module-nomodule/empty.js"></script>
+
+  <script type="module" src="https://jg-testpage.github.io/es-modules/module-nomodule/module.js"></script>
+  <script nomodule src="https://jg-testpage.github.io/es-modules/module-nomodule/nomodule.js"></script>
+</head>
+<body onload="document.body.innerHTML += performance.getEntries().map(e => e.name).join('<br>')">
+
+Safari bug: with empty cache, (100%), or when opening a new tab (50%+), if there's a script with neither `type=module` or `nomodule` in top of HTML,
+the `nomodule` scripts get fetched. Reproducible in Safari 12 and TP74.<br><br>
+</body>
+</html>
