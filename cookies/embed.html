@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+<body>
+
+<script>
+  console.log('toplevel cookieEnabled:', navigator.cookieEnabled)
+  document.cookie = "toplevel=1; path=/; max-age=2600000; samesite=none";
+  console.log('toplevel document.cookie read: ', document.cookie)
+</script>
+<iframe src="http://cookietest.surge.sh"></iframe>
+
