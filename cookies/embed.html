@@ -4,7 +4,7 @@
 
 <script>
   console.log('toplevel cookieEnabled:', navigator.cookieEnabled)
-  document.cookie = "toplevel=1; path=/; max-age=2600000; samesite=none";
+  document.cookie = "toplevel=1; path=/; max-age=2600000";
   console.log('toplevel document.cookie read: ', document.cookie)
 </script>
 <iframe src="https://cookietest.surge.sh"></iframe>
