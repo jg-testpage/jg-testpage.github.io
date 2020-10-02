@@ -1,0 +1,23 @@
+
+<!doctype html>
+<html>
+    <head>
+        <link href="https://jg-testcdn.github.io/script.js" rel="preload" as="script">
+    </head>
+    <body>
+    <script>
+        setTimeout(function(){
+            var iframe = document.createElement('iframe')
+            document.body.appendChild(iframe)
+
+            iframe.contentWindow.document.open().write('<body onload="window.ON_LOAD_CALLBACK(document)"></body>')
+            iframe.contentWindow.ON_LOAD_CALLBACK = function(iframeDocument) {
+                var script = iframeDocument.createElement('script')
+                script.src = 'https://jg-testcdn.github.io/script.js'
+                iframeDocument.body.appendChild(script)
+            }
+            iframe.contentWindow.document.close()
+        }, 1000)
+    </script>
+</body>
+</html>
