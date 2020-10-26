@@ -1,24 +1,32 @@
 <!doctype html><html><head><title>User Timing level 3 tests</title></head>
   <body>
     <h1>User Timing level 3 tests</h1>
-    <p>
-      https://w3c.github.io/user-timing/
-      https://speedcurve.com/blog/user-timing-level-3-set-a-value/
-      https://www.chromestatus.com/feature/5149401886490624
-      https://webkit.org/blog/11333/release-notes-for-safari-technology-preview-115/
-    </p>
+    <h2>Browser support: Chrome 78, Safari TP115 (coming in 14.1 stable)</h2>
+    <h2>Resources</h2>
+    <ul>
+      <li>https://w3c.github.io/user-timing/
+      <li>https://speedcurve.com/blog/user-timing-level-3-set-a-value/
+      <li>https://www.chromestatus.com/feature/5149401886490624
+      <li>https://webkit.org/blog/11333/release-notes-for-safari-technology-preview-115/
+    </ul>
+    <p>Check console and performance panel in devtools.</p>
     <script>
 
       setTimeout(() => {
         performance.mark('a', {startTime: 300})
         performance.mark('b', {startTime: 350})
-        performance.measure('a->b', 'a', 'b')
-      }, 1000)
-
-      setTimeout(() => {
+        performance.measure('a->b', 'a', 'b') 
+        
         performance.mark('c', {startTime: 3000})
         performance.mark('d', {startTime: 3500})
         performance.measure('c->d', 'c', 'd')
+        
+        if (performance.getEntriesByType('measure')[0].duration === 50) {
+          alert('it works')
+        } else {
+          alert('looks like the browser does not support L3 yet')
+        }
+        console.table(performance.getEntriesByType('measure'))
       }, 1000)
 
     </script>
