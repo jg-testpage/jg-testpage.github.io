@@ -7,31 +7,32 @@
       <li><a href="https://webkit.org/blog/11333/release-notes-for-safari-technology-preview-115/">Safari TP115 (coming in 14.1 stable: ~2021.04)</a>
       <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1581705">Firefox bug</a>
     </ul>
+
     <h2>Resources</h2>
     <ul>
-      <li>https://w3c.github.io/user-timing/
-      <li>https://speedcurve.com/blog/user-timing-level-3-set-a-value/
+      <li><a href="https://www.w3.org/TR/user-timing-3/">spec</a>
+      <li><a href="https://speedcurve.com/blog/user-timing-level-3-set-a-value/">speedcurve blog</a>
     </ul>
-    <p>Check console and performance panel in devtools.</p>
-    <script>
 
-      setTimeout(() => {
-        performance.mark('a', {startTime: 300})
-        performance.mark('b', {startTime: 350})
-        performance.measure('a->b', 'a', 'b') 
-        
-        performance.mark('c', {startTime: 3000})
-        performance.mark('d', {startTime: 3500})
-        performance.measure('c->d', 'c', 'd')
-        
-        if (performance.getEntriesByType('measure')[0].duration === 50) {
-          alert('it works')
-        } else {
-          alert('looks like the browser does not support L3 yet')
-        }
-        console.table(performance.getEntriesByType('measure'))
-      }, 1000)
+    <h2>Crude test (see <a href="https://wpt.fyi/results/user-timing">full test suite</a>)</h2>
+    <p id="test">
+      <script>
 
-    </script>
+          performance.mark('a', {startTime: 300})
+          performance.mark('b', {startTime: 350})
+          performance.measure('a->b', 'a', 'b')
+
+          performance.mark('c', {startTime: 3000})
+          performance.mark('d', {startTime: 3500})
+          performance.measure('c->d', 'c', 'd')
+
+          if (performance.getEntriesByType('measure')[0].duration === 50) {
+            document.querySelector('#test').innerHTML = '<span style="color: #0c0">it works</span>'
+          } else {
+            document.querySelector('#test').innerHTML = '<span style="color: #c00">looks like the browser does not fully support L3 yet</span>'
+          }
+          console.table(performance.getEntriesByType('measure'))
+
+      </script>
   </body>
 </html>
