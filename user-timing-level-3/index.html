@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<body>
+<script>
+setTimeout(() => {
+  performance.mark('a', {startTime:100})
+  performance.mark('b', {startTime:200})
+  performance.measure('diff', 'a', 'b')
+}, 1000)
+</script>
+</body>
+</html>
