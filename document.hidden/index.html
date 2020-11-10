@@ -6,6 +6,9 @@
   <br>
   <div id="stuff"></div>
 </body>
+<!-- performance.now polyfill -->
+<script>!function(){if(window.performance=window.performance||{},!("now"in window.performance)){var n=Date.now();performance.timing&&performance.timing.navigationStart&&(n=performance.timing.navigationStart),performance.now=function(){return Date.now()-n}}}();
+</script>
 <script>
   function onVisChange() {
     document.getElementById('stuff').innerHTML +=
