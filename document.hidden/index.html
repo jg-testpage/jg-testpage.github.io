@@ -63,7 +63,7 @@
   }
 
   var listenVisible = listenEvent(function test() {
-    let hidden = document.hidden
+    var hidden = document.hidden
     console.log('test(): document.hidden = ' + hidden);
     return hidden === false
   })
