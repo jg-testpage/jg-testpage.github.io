@@ -7,11 +7,13 @@
   <div id="stuff"></div>
 </body>
 <script>
-  document.addEventListener("visibilitychange", function() {
+  function onVisChange() {
     document.getElementById('stuff').innerHTML +=
       't=' + Math.round(performance.now()) +
       '; visibilitychange: <span style="background-color: #ffc">transitioned to ' + document.visibilityState + '</span><br>';
-  });
+  }
+  // document.addEventListener("visibilitychange", onVisChange);
+  window.addEventListener("visibilitychange", onVisChange);
 
   function checkHidden() {
     var hidden = document.hidden;
