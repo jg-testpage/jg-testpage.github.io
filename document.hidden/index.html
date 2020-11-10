@@ -5,6 +5,11 @@
   <div id="stuff"></div>
 </body>
 <script>
+  document.addEventListener("visibilitychange", function() {
+    document.getElementById('stuff').innerHTML +=
+      'visibilitychange: <span style="background-color: #ffc">transitioned to ' + document.visibilityState + '</span><br>';
+  });
+
   function checkHidden() {
     var hidden = document.hidden;
     var text = 't=' + Math.round(performance.now()) +
