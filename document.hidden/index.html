@@ -30,9 +30,7 @@
   const listenEvent = ({ test = () => true, eventName }) => (callback, once = false) => {
     const listener = () => {
       if (test()) {
-        if (once) {
-          remove()
-        }
+        remove()
         callback()
       }
     }
@@ -41,9 +39,6 @@
 
     if (test()) {
       callback()
-      if (once === false) {
-        add()
-      }
     } else {
       add()
     }
@@ -52,11 +47,15 @@
   }
 
   const listenVisible = listenEvent({
-    test: () => document.hidden === false,
+    test: function() {
+        let hidden = document.hidden
+        console.log('test(): document.hidden = ' + hidden);
+        return hidden === false
+    },
     eventName: 'visibilitychange',
   })
 
-  const onceVisible = (visibleCallback) => listenVisible(visibleCallback, true)
+  const onceVisible = (visibleCallback) => listenVisible(visibleCallback)
 
   onceVisible(function() {
      document.getElementById('once_visible').innerHTML = "ONCE VISIBLE: DONE"
