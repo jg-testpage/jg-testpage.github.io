@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <body>
-  <div id="once_visible" style="background: linen; height: 3em;"></div>
+  <div id="once_visible" style="background: linen; height: 5em;"></div>
 
   <button onclick="document.getElementById('stuff').innerHTML = ''">clear</button>
   <br>
@@ -73,6 +73,6 @@
   }
 
   onceVisible(function() {
-     document.getElementById('once_visible').innerHTML = "ONCE VISIBLE: DONE"
+     document.getElementById('once_visible').innerHTML = navigator.userAgent + "<br>ONCE VISIBLE: DONE"
   })
 </script>
