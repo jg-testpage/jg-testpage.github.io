@@ -12,8 +12,8 @@
       't=' + Math.round(performance.now()) +
       '; visibilitychange: <span style="background-color: #ffc">transitioned to ' + document.visibilityState + '</span><br>';
   }
-  // document.addEventListener("visibilitychange", onVisChange);
-  window.addEventListener("visibilitychange", onVisChange);
+  document.addEventListener("visibilitychange", onVisChange);
+  //window.addEventListener("visibilitychange", onVisChange);
 
   function checkHidden() {
     var hidden = document.hidden;
@@ -39,9 +39,9 @@
     }
     const add = function() {
       console.log('adding listener')
-      window.addEventListener('visibilitychange', listener)
+      document.addEventListener('visibilitychange', listener)
     }
-    const remove = () => window.removeEventListener('visibilitychange', listener)
+    const remove = () => document.removeEventListener('visibilitychange', listener)
 
     console.log('calling test...')
     if (test()) {
