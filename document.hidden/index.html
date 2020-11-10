@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<body></body>
+<script>
+  setInterval(function() {
+    var hidden = document.hidden;
+    var text = 't=' + Math.round(performance.now()) +
+      '; document.hidden = ' + hidden +
+      '; document.visibilityState = ' + document.visibilityState + '<br>';
+    if (hidden) {
+      text = '<span style="background-color: #fcc">' + text + '</span>';
+    }
+    document.body.innerHTML += text;
+  }, 500);
+</script>
