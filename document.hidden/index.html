@@ -7,7 +7,8 @@
 <script>
   document.addEventListener("visibilitychange", function() {
     document.getElementById('stuff').innerHTML +=
-      'visibilitychange: <span style="background-color: #ffc">transitioned to ' + document.visibilityState + '</span><br>';
+      't=' + Math.round(performance.now()) +
+      '; visibilitychange: <span style="background-color: #ffc">transitioned to ' + document.visibilityState + '</span><br>';
   });
 
   function checkHidden() {
