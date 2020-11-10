@@ -27,19 +27,25 @@
   setInterval(checkHidden, 500);
 </script>
 <script>
-  const listenEvent = ({ test = () => true, eventName }) => (callback, once = false) => {
+  const listenEvent = ({ test, eventName }) => (callback) => {
     const listener = () => {
       if (test()) {
         remove()
         callback()
       }
     }
-    const add = () => window.addEventListener(eventName, listener)
+    const add = function() {
+      console.log('adding listener')
+      window.addEventListener(eventName, listener)
+    }
     const remove = () => window.removeEventListener(eventName, listener)
 
+    console.log('calling test...')
     if (test()) {
+      console.log('calling callback...')
       callback()
     } else {
+      console.log('calling add...')
       add()
     }
 
