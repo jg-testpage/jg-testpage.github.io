@@ -12,8 +12,8 @@
       't=' + Math.round(performance.now()) +
       '; visibilitychange: <span style="background-color: #ffc">transitioned to ' + document.visibilityState + '</span><br>';
   }
-  document.addEventListener("visibilitychange", onVisChange);
-  //window.addEventListener("visibilitychange", onVisChange);
+  //document.addEventListener("visibilitychange", onVisChange);
+  window.addEventListener("visibilitychange", onVisChange);
 
   function checkHidden() {
     var hidden = document.hidden;
@@ -29,41 +29,45 @@
   setInterval(checkHidden, 500);
 </script>
 <script>
-  const listenEvent = ({ test }) => (callback) => {
-    const listener = () => {
-      console.log('inside listener')
-      if (test()) {
-        remove()
-        callback()
+  function listenEvent(test) {
+    return function (callback) {
+      var listener = function() {
+        console.log('inside listener')
+        if (test()) {
+          remove()
+          callback()
+        }
       }
-    }
-    const add = function() {
-      console.log('adding listener')
-      document.addEventListener('visibilitychange', listener)
-    }
-    const remove = () => document.removeEventListener('visibilitychange', listener)
+      var add = function() {
+        console.log('adding listener')
+        document.addEventListener('visibilitychange', listener)
+      }
+      var remove = function() {
+        document.removeEventListener('visibilitychange', listener)
+      }
 
-    console.log('calling test...')
-    if (test()) {
-      console.log('calling callback...')
-      callback()
-    } else {
-      console.log('calling add...')
-      add()
-    }
+      console.log('calling test...')
+      if (test()) {
+        console.log('calling callback...')
+        callback()
+      } else {
+        console.log('calling add...')
+        add()
+      }
 
-    return remove
+      return remove
+    }
   }
 
-  const listenVisible = listenEvent({
-    test: function() {
-        let hidden = document.hidden
-        console.log('test(): document.hidden = ' + hidden);
-        return hidden === false
-    }
+  var listenVisible = listenEvent(function test() {
+    let hidden = document.hidden
+    console.log('test(): document.hidden = ' + hidden);
+    return hidden === false
   })
 
-  const onceVisible = (visibleCallback) => listenVisible(visibleCallback)
+  var onceVisible = function(visibleCallback) {
+    listenVisible(visibleCallback)
+  }
 
   onceVisible(function() {
      document.getElementById('once_visible').innerHTML = "ONCE VISIBLE: DONE"
