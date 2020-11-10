@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <body>
+  <div id="once_visible" style="background: linen; height: 3em;"></div>
+
   <button onclick="document.getElementById('stuff').innerHTML = ''">clear</button>
   <br>
   <div id="stuff"></div>
@@ -20,7 +22,43 @@
       text = '<span style="background-color: #fcc">' + text + '</span>';
     }
     document.getElementById('stuff').innerHTML += text;
-  } 
+  }
   checkHidden();
   setInterval(checkHidden, 500);
+</script>
+<script>
+  const listenEvent = ({ test = () => true, eventName }) => (callback, once = false) => {
+    const listener = () => {
+      if (test()) {
+        if (once) {
+          remove()
+        }
+        callback()
+      }
+    }
+    const add = () => window.addEventListener(eventName, listener)
+    const remove = () => window.removeEventListener(eventName, listener)
+
+    if (test()) {
+      callback()
+      if (once === false) {
+        add()
+      }
+    } else {
+      add()
+    }
+
+    return remove
+  }
+
+  const listenVisible = listenEvent({
+    test: () => document.hidden === false,
+    eventName: 'visibilitychange',
+  })
+
+  const onceVisible = (visibleCallback) => listenVisible(visibleCallback, true)
+
+  onceVisible(function() {
+     document.getElementById('once_visible').innerHTML = "ONCE VISIBLE: DONE"
+  })
 </script>
