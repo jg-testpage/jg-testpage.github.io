@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<body></body>
+<body>
+  <button onclick="document.getElementById('stuff').innerHTML = ''">clear</button>
+  <div id="stuff"></div>
+</body>
 <script>
   setInterval(function() {
     var hidden = document.hidden;
@@ -9,6 +12,6 @@
     if (hidden) {
       text = '<span style="background-color: #fcc">' + text + '</span>';
     }
-    document.body.innerHTML += text;
+    document.getElementById('stuff').innerHTML += text;
   }, 500);
 </script>
