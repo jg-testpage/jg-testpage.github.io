@@ -9,7 +9,7 @@
   <div id="stuff"></div>
 </body>
 <script>
-  setInterval(function() {
+  function checkHidden() {
     var hidden = document.hidden;
     var text = 't=' + Math.round(performance.now()) +
       '; document.hidden = ' + hidden +
@@ -18,5 +18,7 @@
       text = '<span style="background-color: #fcc">' + text + '</span>';
     }
     document.getElementById('stuff').innerHTML += text;
-  }, 500);
+  } 
+  checkHidden();
+  setInterval(checkHidden, 500);
 </script>
