@@ -15,8 +15,8 @@
       't=' + Math.round(performance.now()) +
       '; visibilitychange: <span style="background-color: #ffc">transitioned to ' + document.visibilityState + '</span><br>';
   }
-  //document.addEventListener("visibilitychange", onVisChange);
-  window.addEventListener("visibilitychange", onVisChange);
+  document.addEventListener("visibilitychange", onVisChange);
+  // window.addEventListener("visibilitychange", onVisChange); // does not work in Safari!
 
   function checkHidden() {
     var hidden = document.hidden;
