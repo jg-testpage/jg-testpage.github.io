@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<body>
+  <button onclick="document.getElementById('stuff').innerHTML = ''">clear</button>
+  <br>
+  <div id="stuff"></div>
+</body>
+<script>
+  document.addEventListener('focus', function() {
+    document.getElementById('stuff').innerHTML += '<br>focus';
+  });
+  document.addEventListener('blur', function() {
+    document.getElementById('stuff').innerHTML += '<br>blur';
+  });
+</script>
