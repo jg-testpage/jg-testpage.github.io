@@ -5,10 +5,10 @@
   <div id="stuff"></div>
 </body>
 <script>
-  document.addEventListener('focus', function() {
+  window.addEventListener('focus', function() {
     document.getElementById('stuff').innerHTML += '<br>focus';
   });
-  document.addEventListener('blur', function() {
+  window.addEventListener('blur', function() {
     document.getElementById('stuff').innerHTML += '<br>blur';
   });
 </script>
