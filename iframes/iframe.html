@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<head>
+  <script>
+    console.log(performance.now(), 'original hash: ', location.hash)
+    window.addEventListener("hashchange", function() {
+      console.log(performance.now(), 'new hash: ', location.hash)
+    });
+  </script>
+</head>

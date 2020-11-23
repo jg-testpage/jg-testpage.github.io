@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<body>
+<iframe id='test_iframe' src="https://jg-testpage.netlify.app/iframes/iframe.html"></iframe>
+</body>
+<script>
+  console.log(performance.now(), 'updating hash')
+  document.querySelector('#test_iframe').contentWindow.location.hash = 'xyz'
+</script>
