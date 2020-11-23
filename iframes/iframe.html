@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <head>
   <script>
-    console.log(performance.now(), 'original hash: ', location.hash)
-    window.addEventListener("hashchange", function() {
-      console.log(performance.now(), 'new hash: ', location.hash)
-    });
+    var onsite = true
+    if (onsite) {
+      function onNeonFirstMessage(event) {
+        if (event.origin === location.origin) {
+          try {
+            let neonData = JSON.parse(event.data)
+            console.log(neonData)
+          } catch (e) {}
+          window.removeEventListener('message', onNeonFirstMessage);
+        }
+      }
+      window.addEventListener('message', onNeonFirstMessage)
+    
+      console.log("child: sending PLAYER_HTML_OK")
+      window.parent.postMessage("PLAYER_HTML_OK", "*")
+    }
   </script>
 </head>

@@ -3,6 +3,23 @@
 <iframe id='test_iframe' src="https://jg-testpage.netlify.app/iframes/iframe.html"></iframe>
 </body>
 <script>
-  console.log(performance.now(), 'updating hash')
-  document.querySelector('#test_iframe').contentWindow.location.hash = 'xyz'
+      function onPlayerEarlyMessage(event) {
+        if (event.origin === location.origin &&
+            event.data === 'PLAYER_HTML_OK') {
+          console.log('parent: got PLAYER_HTML_OK')
+          let msg = JSON.stringify({
+            landingId: 42,
+            visitId: 42, 
+            visitNumber: 42,
+          });
+          event.source.postMessage(msg, event.origin);
+          window.removeEventListener('message', onPlayerEarlyMessage);
+        }
+      }
+         
+      // TODO do we have a guarantee we will exec this first, before iframe?
+      // maybe player should do this in a loop?
+      console.log('parent: registering')
+      window.addEventListener('message', onPlayerEarlyMessage)
+      
 </script>
