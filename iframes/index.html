@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <body>
-<iframe id='test_iframe' src="https://jg-testpage.netlify.app/iframes/iframe.html"></iframe>
-</body>
-<script>
+  <iframe id='test_iframe' src="https://jg-testpage.netlify.app/iframes/iframe.html"></iframe>
+  <script>
       function onPlayerEarlyMessage(event) {
-        if (event.origin === location.origin &&
+        const expectedOrigin = "https://jg-testpage.netlify.app"
+        if (event.origin === expectedOrigin &&
             event.data === 'PLAYER_HTML_OK') {
           console.log('parent: got PLAYER_HTML_OK')
           let msg = JSON.stringify({
@@ -21,5 +21,5 @@
       // maybe player should do this in a loop?
       console.log('parent: registering')
       window.addEventListener('message', onPlayerEarlyMessage)
-      
-</script>
+  </script>
+</body>
