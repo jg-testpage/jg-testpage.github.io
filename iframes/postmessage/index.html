@@ -6,12 +6,14 @@
   <iframe id='test_iframe' src="https://jg-testpage.netlify.app/iframes/postmessage/iframe.html"></iframe>
   <script>
       function onPlayerEarlyMessage(event) {
-        const expectedOrigin = "https://jg-testpage.netlify.app"
+        var expectedOrigin = "https://jg-testpage.netlify.app"
+        var expectedMessage = 'PLAYER_HTML_OK'
+
         if (event.origin === expectedOrigin &&
-            event.data === 'PLAYER_HTML_OK') {
-          console.log('parent: got PLAYER_HTML_OK')
-          let msg = JSON.stringify({
-            landingId: 42,
+            event.data === expectedMessage) {
+          console.log('parent: got ' + expectedMessage)
+          var msg = JSON.stringify({
+            landingId: "42-42",
             visitId: 42,
             visitNumber: 42,
           });
@@ -21,8 +23,6 @@
         }
       }
 
-      // TODO do we have a guarantee we will exec this first, before iframe?
-      // maybe player should do this in a setInterval loop until it gets the ACK?
       console.log('parent: registering onmessage handler; waiting for alive info from child')
       window.addEventListener('message', onPlayerEarlyMessage)
   </script>

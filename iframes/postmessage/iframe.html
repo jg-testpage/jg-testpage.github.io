@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <head>
   <script>
-    var onsite = true // need to verify it to avoid useless listeners
+    var onsite = true // need to verify it to avoid registering useless listeners
     if (onsite) {
+      const expectedParentOrigin = 'https://jg-testpage.github.io'
       function onNeonFirstMessage(event) {
-        const expectedOrigin = 'https://jg-testpage.github.io'
-        if (event.origin === expectedOrigin) {
+        if (event.origin === expectedParentOrigin) {
           try {
             let neonData = JSON.parse(event.data)
             console.log("child: got early payload", neonData)
-          } catch (e) {}
+          } catch (e) {
+            console.log("child: failed at parsing the payload from parent!")
+          }
           window.removeEventListener('message', onNeonFirstMessage);
         }
       }
       window.addEventListener('message', onNeonFirstMessage)
-    
+
       console.log("child: sending PLAYER_HTML_OK")
-      window.parent.postMessage("PLAYER_HTML_OK", "*")
+      window.parent.postMessage("PLAYER_HTML_OK", expectedParentOrigin)
     }
   </script>
 </head>
