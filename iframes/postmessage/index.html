@@ -23,7 +23,7 @@
 
       // TODO do we have a guarantee we will exec this first, before iframe?
       // maybe player should do this in a setInterval loop until it gets the ACK?
-      console.log('parent: registering')
+      console.log('parent: registering onmessage handler; waiting for alive info from child')
       window.addEventListener('message', onPlayerEarlyMessage)
   </script>
 </body>
