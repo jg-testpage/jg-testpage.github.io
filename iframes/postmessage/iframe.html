@@ -2,15 +2,15 @@
 <head>
   <script>
     if (true) {
-      const MESSAGE_EARLY_DATA_EXCHANGE = 'early_data_exchange'
-      const MESSAGE_TARGET_ORIGIN = 'https://jg-testpage.github.io'
+      var MESSAGE_EARLY_DATA_EXCHANGE = 'early_data_exchange'
+      var MESSAGE_TARGET_ORIGIN = 'https://jg-testpage.github.io'
 
       function onNeonFirstMessage(event) {
         if (event.origin === MESSAGE_TARGET_ORIGIN) {
           try {
             let json = JSON.parse(event.data)
             if (json.messageId === MESSAGE_EARLY_DATA_EXCHANGE) {
-              const neonData = json.payload
+              var neonData = json.payload
               console.log("child: got early payload", neonData)
             }
           } catch (e) {
