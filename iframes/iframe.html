@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <head>
   <script>
-    var onsite = true
+    var onsite = true // need to verify it to avoid useless listeners
     if (onsite) {
       function onNeonFirstMessage(event) {
-        if (event.origin === location.origin) {
+        const expectedOrigin = 'https://jg-testpage.github.io'
+        if (event.origin === expectedOrigin) {
           try {
             let neonData = JSON.parse(event.data)
-            console.log(neonData)
+            console.log("child: got early payload", neonData)
           } catch (e) {}
           window.removeEventListener('message', onNeonFirstMessage);
         }

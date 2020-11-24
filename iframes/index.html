@@ -1,3 +1,6 @@
+<!-- parent page should be loaded from
+     https://jg-testpage.github.io/iframes/index.html
+     to emulate cross-site security -->
 <!DOCTYPE html>
 <body>
   <iframe id='test_iframe' src="https://jg-testpage.netlify.app/iframes/iframe.html"></iframe>
@@ -12,13 +15,14 @@
             visitId: 42, 
             visitNumber: 42,
           });
+          console.log('parent: sending early payload', msg)
           event.source.postMessage(msg, event.origin);
           window.removeEventListener('message', onPlayerEarlyMessage);
         }
       }
          
       // TODO do we have a guarantee we will exec this first, before iframe?
-      // maybe player should do this in a loop?
+      // maybe player should do this in a setInterval loop until it gets the ACK?
       console.log('parent: registering')
       window.addEventListener('message', onPlayerEarlyMessage)
   </script>
