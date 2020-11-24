@@ -2,8 +2,6 @@
 <head>
   <script>
 
-    var onsite = true // need to verify it to avoid registering useless listeners
-    if (onsite) {
       const MESSAGE_EARLY_DATA_EXCHANGE = 'early_data_exchange'
       const MESSAGE_TARGET_ORIGIN = 'https://jg-testpage.github.io'
 
@@ -25,6 +23,6 @@
 
       console.log("child: sending 'early_data_exchange'")
       window.parent.postMessage(MESSAGE_EARLY_DATA_EXCHANGE, MESSAGE_TARGET_ORIGIN)
-    }
+
   </script>
 </head>
