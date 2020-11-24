@@ -1,9 +1,9 @@
 <!-- parent page should be loaded from
-     https://jg-testpage.github.io/iframes/index.html
+     https://jg-testpage.github.io/iframes/postmessage/index.html
      to emulate cross-site security -->
 <!DOCTYPE html>
 <body>
-  <iframe id='test_iframe' src="https://jg-testpage.netlify.app/iframes/iframe.html"></iframe>
+  <iframe id='test_iframe' src="https://jg-testpage.netlify.app/iframes/postmessage/iframe.html"></iframe>
   <script>
       function onPlayerEarlyMessage(event) {
         const expectedOrigin = "https://jg-testpage.netlify.app"
@@ -12,7 +12,7 @@
           console.log('parent: got PLAYER_HTML_OK')
           let msg = JSON.stringify({
             landingId: 42,
-            visitId: 42, 
+            visitId: 42,
             visitNumber: 42,
           });
           console.log('parent: sending early payload', msg)
@@ -20,7 +20,7 @@
           window.removeEventListener('message', onPlayerEarlyMessage);
         }
       }
-         
+
       // TODO do we have a guarantee we will exec this first, before iframe?
       // maybe player should do this in a setInterval loop until it gets the ACK?
       console.log('parent: registering')
