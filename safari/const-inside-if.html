@@ -3,12 +3,11 @@
   <script>
     if (true) {
       const MY_CONST = 'MY_CONST'
-      function myFunction() {
-        if ("MY_CONST" === MY_CONST) {
+      (function() {
+        if (MY_CONST === "MY_CONST") {
           console.log('all good')
         }
-      }
-      myFunction()
+      })();
     }
   </script>
 </head>
