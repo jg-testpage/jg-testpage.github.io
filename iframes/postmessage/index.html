@@ -6,16 +6,19 @@
   <iframe id='test_iframe' src="https://jg-testpage.netlify.app/iframes/postmessage/iframe.html"></iframe>
   <script>
       function onPlayerEarlyMessage(event) {
-        var expectedOrigin = "https://jg-testpage.netlify.app"
-        var expectedMessage = 'PLAYER_HTML_OK'
+        var MESSAGE_EXPECTED_ORIGIN = "https://jg-testpage.netlify.app"
+        var MESSAGE_EARLY_DATA_EXCHANGE = 'early_data_exchange'
 
-        if (event.origin === expectedOrigin &&
-            event.data === expectedMessage) {
-          console.log('parent: got ' + expectedMessage)
+        if (event.origin === MESSAGE_EXPECTED_ORIGIN &&
+            event.data === MESSAGE_EARLY_DATA_EXCHANGE) {
+          console.log('parent: got ' + MESSAGE_EARLY_DATA_EXCHANGE)
           var msg = JSON.stringify({
-            landingId: "42-42",
-            visitId: 42,
-            visitNumber: 42,
+            messageId: MESSAGE_EARLY_DATA_EXCHANGE,
+            payload: {
+              landingId: "42-42-42",
+              visitId: 42,
+              visitNumber: 42,
+            }
           });
           console.log('parent: sending early payload', msg)
           event.source.postMessage(msg, event.origin);
