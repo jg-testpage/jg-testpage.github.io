@@ -8,7 +8,7 @@
       function onNeonFirstMessage(event) {
         if (event.origin === MESSAGE_TARGET_ORIGIN) {
           try {
-            let json = JSON.parse(event.data)
+            var json = JSON.parse(event.data)
             if (json.messageId === MESSAGE_EARLY_DATA_EXCHANGE) {
               var neonData = json.payload
               console.log("child: got early payload", neonData)
